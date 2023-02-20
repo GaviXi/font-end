@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOM</title>
+</head>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  li {
+    list-style: none;
+  }
+  .box {
+    width: 1000px;
+    margin: 0 auto;
+  }
+  .tit {
+    text-align: center;
+    color: orange;
+  }
+  .list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .list>.item {
+    margin-top: 20px;
+    width: 400px;
+    padding: 20px 0;
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+    border: 2px solid #999;
+  }
+  .tip {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 30px;
+    color: #333;
+  }
+  .skip:hover {
+    cursor: pointer;
+    color: blue;
+  }
+</style>
+<body>
+  <div class="box">
+    <h1 class="tit">报考C认证，走向人生巅峰</h1>
+    <ul class="list">
+      <li class="item">C1 见习工程师能力认证</li>
+      <li class="item">C4 前端工程师基础能力认证</li>
+      <li class="item">C4 Python工程师基础能力认证</li>
+      <li class="item">C4 Java工程师基础能力认证</li>
+      <li class="item">C4 前端工程师项目能力认证</li>
+      <li class="item">C4 Python工程师项目能力认证</li>
+      <li class="item">C4 Java工程师项目能力认证</li>
+      <li class="item">C5 工程师底层能力认证</li>
+      <li class="item">C5 工程师交付能力认证</li>
+      <li class="item">C5 全栈工程师认证</li>
+    </ul>
+    <p class="tip">正在跳转至备忘录......</p>
+    <p class="tip skip">跳过广告</p>
+  </div>
+</body>
+<script>
+  var timer = setTimeout(function() {
+    // 执行动作，跳转备忘录
+    location.href = './todolist/index.html' // 如果直接双击打开本文件，需使用相对路径跳转，/ => ./
+  }, 5000)
+
+  var skip = document.querySelector('.skip')
+  skip.addEventListener('click', function() {
+    clearTimeout(timer)
+    open('./todolist/index.html')
+  })
+</script>
+</html>

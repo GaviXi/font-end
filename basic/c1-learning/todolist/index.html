@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todolist</title>
+  <link rel="stylesheet" href="todolist.css">
+  <script>
+    // window.addEventListener('load', function() {
+    //   alert('访客+1')
+    // })
+    // window.addEventListener('beforeunload', function() {
+    //   alert('关闭页面了')
+    // })
+    // 判断浏览器内核 
+    if (navigator.userAgent.toLowerCase().indexOf('chrome') === -1) {
+      alert('为保证您的使用体验，请下载谷歌浏览器')
+      location.href = 'https://www.google.cn/chrome/'
+    }
+  </script>
+</head>
+<body>
+  <div class="todo">
+    <div class="box">
+      <!-- 标题 -->
+      <p class="tit">备忘录：</p>
+      <!-- 添加按钮及其输入框 -->
+      <div class="action">
+        <input type="text" name="task" autocomplete="off" placeholder="请填写内容">
+        <button class="add">添加</button>
+      </div>
+      <!-- 备忘录列表 -->
+      <ul class="list">
+        <li class="item">
+          <span class="info">周一早上例会</span>
+          <div class="control">
+            <button class="edit">编辑</button>
+            <button class="finish">完成</button>
+            <button class="delete">删除</button>
+          </div>
+        </li>
+        <li class="item">
+          <span class="info">周二晚上加班</span>
+          <div class="control">
+            <button class="edit">编辑</button>
+            <button class="finish">完成</button>
+            <button class="delete">删除</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <img class="backTop" src="./imgs/backtop.svg" alt="返回顶部">
+  </div>
+</body>
+<script>
+  // 添加
+  var input = document.querySelector('.action input')
+  var addBtn = document.querySelector('.add')
+  var list = document.querySelector('.list')
+  var backTop = document.querySelector('.backTop')
+
+  // 设置返回顶部图标
+  window.addEventListener('scroll', function() {
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+    if (scrollTop > 200) {
+      backTop.style.display = 'block'
+    } else {
+      backTop.style.display = 'none'
+    }
+  })
+
+  // 返回顶部
+  backTop.addEventListener('click', function() {
+    var timer = setInterval(function() {
+      var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+      if (scrollTop === 0) {
+        clearInterval(timer)
+      }
+
+      scrollBy(0, -20)
+    }, 5)
+  })
+
+  // 回车添加
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      addAction()
+    }
+  })
+
+  addBtn.addEventListener('click', addAction)
+
+  // 添加动作
+  function addAction() {
+    list.insertAdjacentHTML('beforeend', `
+    <li class="item">
+      <span class="info">${input.value}</span>
+      <div class="control">
+        <button class="edit">编辑</button>
+        <button class="finish">完成</button>
+        <button class="delete">删除</button>
+      </div>
+    </li>
+    `)
+
+    list.lastElementChild.querySelector('.delete').addEventListener('click', function() {
+      list.removeChild(this.parentNode.parentNode)
+    })
+    list.lastElementChild.querySelector('.finish').addEventListener('click', function() {
+      var listItem = this.parentNode.parentNode
+      listItem.classList.add('finished')
+    })
+    list.lastElementChild.querySelector('.edit').addEventListener('click', function() {
+      var listItem = this.parentNode.parentNode
+      listItem.querySelector('.info').innerText = prompt('请输入修改内容😀')
+    })
+    list.lastElementChild.addEventListener('dblclick', function() {
+      this.querySelector('.info').innerText = prompt('请输入修改内容😀')
+    })
+    
+    list.lastElementChild.addEventListener('mouseenter', function() {
+      this.classList.add('active')
+    })
+    list.lastElementChild.addEventListener('mouseleave', function() {
+      this.classList.remove('active')
+    })
+  }
+
+  // 删除
+  var delBtns = document.querySelectorAll('.delete')
+  // 完成
+  var finishBtns = document.querySelectorAll('.finish')
+  // 编辑
+  var editBtns = document.querySelectorAll('.edit')
+  
+  for (let idx = 0; idx < delBtns.length; idx++) {
+    // 删除动作
+    delBtns[idx].addEventListener('click', function() {
+      list.removeChild(this.parentNode.parentNode)
+    })
+    // 完成动作
+    finishBtns[idx].addEventListener('click', function() {
+      var listItem = this.parentNode.parentNode
+      // listItem.style.backgroundColor = '#a5f1b8'
+      listItem.classList.add('finished')
+    })
+    // 编辑动作
+    editBtns[idx].addEventListener('click', function() {
+      var listItem = this.parentNode.parentNode
+      listItem.querySelector('.info').innerText = prompt('请输入修改内容😀')
+    })
+    // 双击编辑
+    list.children[idx].addEventListener('dblclick', function() {
+      this.querySelector('.info').innerText = prompt('请输入修改内容😀')
+    })
+    // 鼠标移入
+    list.children[idx].addEventListener('mouseenter', function() {
+      this.classList.add('active')
+    })
+    // 鼠标移出
+    list.children[idx].addEventListener('mouseleave', function() {
+      this.classList.remove('active')
+    })
+  }
+</script>
+</html>

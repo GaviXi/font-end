@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+div, ul, li, p, span {
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+input{  
+  background:none;  
+  outline:none;  
+  border:none;
+}
+body {
+  background-color: #111;
+}
+.box {
+  padding: 19px;
+  margin: 20px auto;
+  min-height: 20px;
+  width: 540px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgb(0, 0, 0, 5%);
+  background-color: skyblue;
+}
+.box>.tit {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+.list {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.list>.item {
+  padding: 10px 15px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list>.item:first-of-type {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top: 0;
+}
+.list>.item:last-of-type {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.item>.info {
+  color: #666;
+  font-size: 14px;
+}
+.control>button {
+  cursor: pointer;
+  padding: 6px 12px;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.edit {
+  background-color: #337ab7;;
+}
+.finish {
+  background-color: #20c248;
+}
+.delete {
+  background-color: #d9534f;
+}
+
+.list>.active {
+  background-color: #ccc;
+}
+
+.list>.finished {
+  background-color: #a5f1b8;
+}
+.finished>.info {
+  text-decoration: line-through;
+}
+
+.action {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+}
+.action>span {
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+}
+.action>input {
+  width: 300px;
+  height: 30px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 5px;
+  text-indent: 20px;
+}
+.action>button {
+  cursor: pointer;
+  margin-left: 20px;
+  padding: 6px 12px;
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #666;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.imgBox>img {
+  width: 100%;
+}
+
+.backTop {
+  display: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 150px;
+  right: 50px;
+  width: 50px;
+}
